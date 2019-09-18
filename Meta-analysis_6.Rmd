@@ -276,8 +276,13 @@ standard3
 Lower is better.
 
 ```{r}
-anova(multilevel,standard2,standard3)
+anova(multilevel,standard2)
 ```
+
+```{r}
+anova(multilevel,standard3)
+```
+
 
 ???
 
@@ -634,7 +639,6 @@ Great strengths of network meta-analytical models:
 ---
 ## Assumptions
 
-
 \begin{align}
 \sigma^2_{A,C}^{indirect} = \sigma^2_{B,A}^{direct} + \sigma^2_{B,C}^{direct}
 \end{align}
@@ -702,7 +706,7 @@ The assumption of exchangeability thus basically means that the effect size $\ha
 ---
 ## Potential solution.
 
-Several methods have been proposed to evaluate inconsistency in network meta-analysis models, including **net heat plots** [@krahn2013graphical] ADD REFERENCE and **node splitting** [@dias2010checking] ADD REFERENCE. We will describe these methods in further detail in the following two subchapters where we explain how to perform a network meta-analysis in R.
+Several methods have been proposed to evaluate inconsistency in network meta-analysis models, including **net heat plots** (Krahn et al.2013) and **node splitting** [(Dias et al. 2018](https://onlinelibrary.wiley.com/doi/book/10.1002/9781118951651)) We will describe these methods in further detail in the following two subchapters where we explain how to perform a network meta-analysis in R.
 
 
 ---
@@ -824,7 +828,7 @@ Most interesting: **which intervention works the best?**.
 
 - The `netrank()` generates a **ranking** of treatments from most to least beneficial. The `netrank()` function is a frequentist treatment ranking method using **P-scores**. These P-scores measure the certainty that one treatment is better than another, averaged over all competing treatments. 
 
-- The P-score has been shown to be equivalent to the **SUCRA** score (Bayesian analysis) [@rucker2015ranking] ADD REFERENCE
+- The P-score has been shown to be equivalent to the **SUCRA** score (Bayesian analysis) [(Rücker et al., 2015)](https://bmcmedresmethodol.biomedcentral.com/articles/10.1186/s12874-015-0060-8)
 
 - Need to specify the `small.values` parameter, which defines if smaller effect sizes in a comparison indicate a beneficial (`"good"`) or harmful (`"bad"`) effect. 
 
@@ -838,7 +842,7 @@ netrank(freq_netmeta, small.values = "good")
 ---
 ## Forest.
 
-```{r}
+```{r, eval= F}
 netmeta::forest.netmeta(freq_netmeta, 
        reference.group = "plac",
        xlim=c(-1.5,0.5),
@@ -900,7 +904,7 @@ The important information here is in the `p-value` column. If the value in this 
 ---
 ## Forest.
 
-```{r,  out.width="400px", fig.align="center", dev="svg"}
+```{r,  out.width="500px", fig.align="center", dev="svg"}
 forest(netsplit(freq_netmeta))
 ```
 
@@ -909,9 +913,15 @@ forest(netsplit(freq_netmeta))
 
 Assessing the publication bias of a network meta-analysis in its aggregated form is difficult. Analyzing so-called **comparison-adjusted funnel plot** has been proposed to evaluate the risk of publication bias under specific circumstances. 
 
+--
+
 Comparison-adjusted funnel plots allow to assess potential publication bias if we have an *a priori* hypothesis concerning which mechanism may underlie publication bias.
 
+--
+
 For example, publication bias exists due to studies suggesting **new form of treatment is superior** to an already known treatment have a **higher chance** of getting published, even if they have a small sample size, and thus a larger standard error of their effect size estimate.
+
+--
 
 The `funnel()` function in `netmeta` makes it easy to generate comparison-adjusted funnel plots to test such hypotheses. 
 
@@ -994,18 +1004,13 @@ Techniques from machine learning applied to meta-analysis. Especially useful whe
 You can view an example [here](https://github.com/cran/metaforest)
 
 ---
-## Any Questions?
+## Exercise.
 
-[http://tvpollet.github.io](http://tvpollet.github.io)
-
-Twitter: @tvpollet
+No exercise (yet). Just do some further reading for now!
 
 ```{r, out.width = "600px", echo=FALSE, fig.align='center'}
-knitr::include_graphics("https://media.giphy.com/media/3ohzdRoOp1FUYbtGDu/giphy.gif")
+knitr::include_graphics("https://media.giphy.com/media/NFA61GS9qKZ68/giphy.gif")
 ```
-
----
-## Exercise.
 
 ---
 ## Any Questions?

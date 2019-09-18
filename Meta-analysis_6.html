@@ -13,7 +13,7 @@ class: center, middle, inverse, title-slide
 
 # Meta-analysis course part 6: Advanced topics.
 ### Thomas Pollet (<span class="citation">@tvpollet</span>), Northumbria University
-### 2019-09-06 | <a href="http://tvpollet.github.io/disclaimer">disclaimer</a>
+### 2019-09-17 | <a href="http://tvpollet.github.io/disclaimer">disclaimer</a>
 
 ---
 
@@ -418,7 +418,7 @@ Lower is better.
 
 
 ```r
-anova(multilevel,standard2,standard3)
+anova(multilevel,standard2)
 ```
 
 ```
@@ -427,6 +427,19 @@ anova(multilevel,standard2,standard3)
 ## Full     3 21.9174 27.9394 22.3880  -7.9587                578.8640 
 ## Reduced  2 37.6910 41.7057 37.9218 -16.8455 17.7736 &lt;.0001 578.8640
 ```
+
+
+```r
+anova(multilevel,standard3)
+```
+
+```
+## 
+##         df     AIC     BIC    AICc   logLik     LRT   pval       QE 
+## Full     3 21.9174 27.9394 22.3880  -7.9587                578.8640 
+## Reduced  2 68.4330 72.4476 68.6637 -32.2165 48.5155 &lt;.0001 578.8640
+```
+
 
 ???
 
@@ -626,8 +639,8 @@ summary(bcg1)
 ## Intercept1 -4.83374   0.34020 -5.50052 -4.16697 -14.2086  &lt; 2e-16 ***
 ## Intercept2 -4.09597   0.43475 -4.94806 -3.24389  -9.4216  &lt; 2e-16 ***
 ## Tau2_1_1    1.43137   0.58304  0.28863  2.57411   2.4550  0.01409 *  
-## Tau2_2_1    1.75733   0.72425  0.33781  3.17684   2.4264  0.01525 *  
-## Tau2_2_2    2.40733   0.96742  0.51122  4.30344   2.4884  0.01283 *  
+## Tau2_2_1    1.75733   0.72426  0.33781  3.17684   2.4264  0.01525 *  
+## Tau2_2_2    2.40733   0.96742  0.51122  4.30345   2.4884  0.01283 *  
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
@@ -681,9 +694,9 @@ summary(bcg2)
 ## Coefficients:
 ##            Estimate Std.Error    lbound    ubound  z value Pr(&gt;|z|)    
 ## Intercept -5.375013  0.458426 -6.273512 -4.476514 -11.7249  &lt; 2e-16 ***
-## Tau2_1_1   1.700312  0.855106  0.024334  3.376290   1.9884  0.04677 *  
-## Tau2_2_1   2.455619  1.311290 -0.114462  5.025701   1.8727  0.06111 .  
-## Tau2_2_2   4.108667  1.990211  0.207925  8.009408   2.0644  0.03898 *  
+## Tau2_1_1   1.700312  0.855105  0.024336  3.376288   1.9884  0.04676 *  
+## Tau2_2_1   2.455619  1.311289 -0.114459  5.025698   1.8727  0.06111 .  
+## Tau2_2_2   4.108667  1.990209  0.207929  8.009405   2.0644  0.03898 *  
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
@@ -787,7 +800,7 @@ summary(bcg3)
 ## Intercept1 -4.83659   0.39241 -5.60569 -4.06748 -12.3254 &lt; 2.2e-16 ***
 ## Intercept2 -4.08256   0.38911 -4.84520 -3.31991 -10.4920 &lt; 2.2e-16 ***
 ## Tau2_Eq     1.91972   0.73758  0.47408  3.36535   2.6027  0.009249 ** 
-## Tau2_2_1    1.76544   0.73885  0.31732  3.21357   2.3894  0.016874 *  
+## Tau2_2_1    1.76544   0.73886  0.31731  3.21357   2.3894  0.016875 *  
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
@@ -841,7 +854,7 @@ We reject the assumption of equal heterogeneity.
 plot(bcg1, xlim=c(-8,0), ylim=c(-8,0))
 ```
 
-&lt;img src="Meta-analysis_6_files/figure-html/unnamed-chunk-23-1.png" width="450px" /&gt;
+&lt;img src="Meta-analysis_6_files/figure-html/unnamed-chunk-24-1.png" width="450px" /&gt;
 
 ???
 The x- and the y-axes represent the first and the second effect sizes for the vaccinated group and the nonvaccinated
@@ -850,7 +863,7 @@ group, respectively. The small circle dots are the observed effect sizes. The da
 ---
 ## Plot interpretation.
 
-&lt;img src="Meta-analysis_6_files/figure-html/unnamed-chunk-24-1.png" width="500px" style="display: block; margin: auto;" /&gt;
+&lt;img src="Meta-analysis_6_files/figure-html/unnamed-chunk-25-1.png" width="500px" style="display: block; margin: auto;" /&gt;
 
 ???
 A confidence ellipse is the bivariate generalization of the CI. If we were able to repeat Study i by collecting new data, 95% of such ellipses constructed in the replications will contain Study i’s true bivariate effect sizes. The confidence ellipses around the studies are not tilted in the figure, showing that the effect sizes are conditionally independent. The solid square in the location (−4.8338,−4.0960) represents the estimated average population effect sizes for the vaccinated and the nonvaccinated groups.
@@ -877,7 +890,7 @@ differences on the vaccinated and the nonvaccinated groups. **Frailty risk**. It
 ---
 ## Forest plots.
 
-&lt;img src="Meta-analysis_6_files/figure-html/unnamed-chunk-26-1.svg" width="400px" /&gt;
+&lt;img src="Meta-analysis_6_files/figure-html/unnamed-chunk-27-1.svg" width="400px" /&gt;
 
 
 ---
@@ -1013,7 +1026,6 @@ Great strengths of network meta-analytical models:
 ---
 ## Assumptions
 
-
 `\begin{align}
 \sigma^2_{A,C}^{indirect} = \sigma^2_{B,A}^{direct} + \sigma^2_{B,C}^{direct}
 \end{align}`
@@ -1081,7 +1093,7 @@ The assumption of exchangeability thus basically means that the effect size `\(\
 ---
 ## Potential solution.
 
-Several methods have been proposed to evaluate inconsistency in network meta-analysis models, including **net heat plots** [@krahn2013graphical] ADD REFERENCE and **node splitting** [@dias2010checking] ADD REFERENCE. We will describe these methods in further detail in the following two subchapters where we explain how to perform a network meta-analysis in R.
+Several methods have been proposed to evaluate inconsistency in network meta-analysis models, including **net heat plots** (Krahn et al.2013) and **node splitting** [(Dias et al. 2018](https://onlinelibrary.wiley.com/doi/book/10.1002/9781118951651)) We will describe these methods in further detail in the following two subchapters where we explain how to perform a network meta-analysis in R.
 
 
 ---
@@ -1103,10 +1115,6 @@ These can be estimated with [Bayesian](https://www.analyticsvidhya.com/blog/2016
 
 We use the Senn (2013) data on Diabetes. These are data on the effects of a number of drugs on the HbA1c (glycated hemoglobin, your average blood glucose) value (Mean Difference). 
 
-
-```
-## Warning: package 'meta' was built under R version 3.5.2
-```
 
 ```
 ##      TE   seTE   treat1.long treat2.long treat1 treat2           studlab
@@ -1134,8 +1142,24 @@ summary(Data$studlab)
 ```
 
 ```
-##    Length     Class      Mode 
-##        28 character character
+##           Alex1998          Baksi2004          Costa1997 
+##                  1                  1                  1 
+##       Davidson2007       DeFronzo1995         Derosa2004 
+##                  1                  1                  1 
+##         Garber2008 Gonzalez-Ortiz2004       Hanefeld2004 
+##                  1                  1                  1 
+##      Hermansen2007       Johnston1994      Johnston1998a 
+##                  1                  1                  1 
+##      Johnston1998b        Kerenyi2004            Kim2007 
+##                  1                  1                  1 
+##         Kipnes2001          Lewin2007         Moulin2006 
+##                  1                  1                  1 
+##          Oyama2008     Rosenstock2008         Stucci1996 
+##                  1                  1                  1 
+## Vongthavaravat2002         Willms1999  Wolffenbuttel1999 
+##                  1                  3                  1 
+##           Yang2003            Zhu2003 
+##                  1                  1
 ```
 
 ???
@@ -1275,32 +1299,32 @@ freq_netmeta
 ## 
 ## Number of treatment arms (by study):
 ##                    narms
-## DeFronzo1995           2
-## Lewin2007              2
-## Willms1999             3
-## Davidson2007           2
-## Wolffenbuttel1999      2
-## Kipnes2001             2
-## Kerenyi2004            2
-## Hanefeld2004           2
-## Derosa2004             2
-## Baksi2004              2
-## Rosenstock2008         2
-## Zhu2003                2
-## Yang2003               2
-## Vongthavaravat2002     2
-## Oyama2008              2
-## Costa1997              2
-## Hermansen2007          2
-## Garber2008             2
 ## Alex1998               2
+## Baksi2004              2
+## Costa1997              2
+## Davidson2007           2
+## DeFronzo1995           2
+## Derosa2004             2
+## Garber2008             2
+## Gonzalez-Ortiz2004     2
+## Hanefeld2004           2
+## Hermansen2007          2
 ## Johnston1994           2
 ## Johnston1998a          2
-## Kim2007                2
 ## Johnston1998b          2
-## Gonzalez-Ortiz2004     2
-## Stucci1996             2
+## Kerenyi2004            2
+## Kim2007                2
+## Kipnes2001             2
+## Lewin2007              2
 ## Moulin2006             2
+## Oyama2008              2
+## Rosenstock2008         2
+## Stucci1996             2
+## Vongthavaravat2002     2
+## Willms1999             3
+## Wolffenbuttel1999      2
+## Yang2003               2
+## Zhu2003                2
 ## 
 ## Results (fixed effect model):
 ## 
@@ -1409,7 +1433,7 @@ Most interesting: **which intervention works the best?**.
 
 - The `netrank()` generates a **ranking** of treatments from most to least beneficial. The `netrank()` function is a frequentist treatment ranking method using **P-scores**. These P-scores measure the certainty that one treatment is better than another, averaged over all competing treatments. 
 
-- The P-score has been shown to be equivalent to the **SUCRA** score (Bayesian analysis) [@rucker2015ranking] ADD REFERENCE
+- The P-score has been shown to be equivalent to the **SUCRA** score (Bayesian analysis) [(Rücker et al., 2015)](https://bmcmedresmethodol.biomedcentral.com/articles/10.1186/s12874-015-0060-8)
 
 - Need to specify the `small.values` parameter, which defines if smaller effect sizes in a comparison indicate a beneficial (`"good"`) or harmful (`"bad"`) effect. 
 
@@ -1448,12 +1472,10 @@ netmeta::forest.netmeta(freq_netmeta,
        smlab = "Medications vs. Placebo \n (HbA1c value)")
 ```
 
-![](Meta-analysis_6_files/figure-html/unnamed-chunk-40-1.png)&lt;!-- --&gt;
-
 ---
 ## Forest plot.
 
-&lt;img src="Meta-analysis_6_files/figure-html/unnamed-chunk-41-1.svg" width="450px" style="display: block; margin: auto;" /&gt;
+&lt;img src="Meta-analysis_6_files/figure-html/unnamed-chunk-42-1.svg" width="450px" style="display: block; margin: auto;" /&gt;
 
 ---
 ## Netheat plot
@@ -1463,7 +1485,7 @@ netmeta::forest.netmeta(freq_netmeta,
 netheat(freq_netmeta, nchar.trts = 4)
 ```
 
-&lt;img src="Meta-analysis_6_files/figure-html/unnamed-chunk-42-1.svg" width="450px" style="display: block; margin: auto;" /&gt;
+&lt;img src="Meta-analysis_6_files/figure-html/unnamed-chunk-43-1.svg" width="450px" style="display: block; margin: auto;" /&gt;
 
 ???
 Plots specific **designs**, not all `\(m\)` treatment comparisons in our network. Thus, we also have rows and columns for the multiarm study `Willms1999`, which had a design comparing **"Plac"**, **"Metf"** and **Acar**. Treatment comparison with only one kind of evidence (i.e. only direct or indirect evidence) are omitted in this plot, because we are interested in **cases of inconsistency** between direct and indirect evidence. Beyond that, the net heat plot has two important features (Schwarzer et al., 2015):
@@ -1482,7 +1504,7 @@ Plots specific **designs**, not all `\(m\)` treatment comparisons in our network
 netheat(freq_netmeta, nchar.trts = 4, random=T)
 ```
 
-&lt;img src="Meta-analysis_6_files/figure-html/unnamed-chunk-43-1.svg" width="300px" style="display: block; margin: auto;" /&gt;
+&lt;img src="Meta-analysis_6_files/figure-html/unnamed-chunk-44-1.svg" width="300px" style="display: block; margin: auto;" /&gt;
 
 ---
 ## Net splitting.
@@ -1575,16 +1597,22 @@ The important information here is in the `p-value` column. If the value in this 
 forest(netsplit(freq_netmeta))
 ```
 
-&lt;img src="Meta-analysis_6_files/figure-html/unnamed-chunk-45-1.svg" width="400px" style="display: block; margin: auto;" /&gt;
+&lt;img src="Meta-analysis_6_files/figure-html/unnamed-chunk-46-1.svg" width="500px" style="display: block; margin: auto;" /&gt;
 
 ---
 ## Publication bias.
 
 Assessing the publication bias of a network meta-analysis in its aggregated form is difficult. Analyzing so-called **comparison-adjusted funnel plot** has been proposed to evaluate the risk of publication bias under specific circumstances. 
 
+--
+
 Comparison-adjusted funnel plots allow to assess potential publication bias if we have an *a priori* hypothesis concerning which mechanism may underlie publication bias.
 
+--
+
 For example, publication bias exists due to studies suggesting **new form of treatment is superior** to an already known treatment have a **higher chance** of getting published, even if they have a small sample size, and thus a larger standard error of their effect size estimate.
+
+--
 
 The `funnel()` function in `netmeta` makes it easy to generate comparison-adjusted funnel plots to test such hypotheses. 
 
@@ -1613,7 +1641,7 @@ If our hypothesis is true, we would expect that studies with a **small sample**,
 ---
 ## Funnel plot.
 
-&lt;img src="Meta-analysis_6_files/figure-html/unnamed-chunk-47-1.svg" width="450px" style="display: block; margin: auto;" /&gt;
+&lt;img src="Meta-analysis_6_files/figure-html/unnamed-chunk-48-1.svg" width="450px" style="display: block; margin: auto;" /&gt;
 
 ---
 ## Random effects
@@ -1682,32 +1710,32 @@ freq_netmeta_rand
 ## 
 ## Number of treatment arms (by study):
 ##                    narms
-## DeFronzo1995           2
-## Lewin2007              2
-## Willms1999             3
-## Davidson2007           2
-## Wolffenbuttel1999      2
-## Kipnes2001             2
-## Kerenyi2004            2
-## Hanefeld2004           2
-## Derosa2004             2
-## Baksi2004              2
-## Rosenstock2008         2
-## Zhu2003                2
-## Yang2003               2
-## Vongthavaravat2002     2
-## Oyama2008              2
-## Costa1997              2
-## Hermansen2007          2
-## Garber2008             2
 ## Alex1998               2
+## Baksi2004              2
+## Costa1997              2
+## Davidson2007           2
+## DeFronzo1995           2
+## Derosa2004             2
+## Garber2008             2
+## Gonzalez-Ortiz2004     2
+## Hanefeld2004           2
+## Hermansen2007          2
 ## Johnston1994           2
 ## Johnston1998a          2
-## Kim2007                2
 ## Johnston1998b          2
-## Gonzalez-Ortiz2004     2
-## Stucci1996             2
+## Kerenyi2004            2
+## Kim2007                2
+## Kipnes2001             2
+## Lewin2007              2
 ## Moulin2006             2
+## Oyama2008              2
+## Rosenstock2008         2
+## Stucci1996             2
+## Vongthavaravat2002     2
+## Willms1999             3
+## Wolffenbuttel1999      2
+## Yang2003               2
+## Zhu2003                2
 ## 
 ## Results (random effects model):
 ## 
@@ -1786,16 +1814,11 @@ Techniques from machine learning applied to meta-analysis. Especially useful whe
 You can view an example [here](https://github.com/cran/metaforest)
 
 ---
-## Any Questions?
-
-[http://tvpollet.github.io](http://tvpollet.github.io)
-
-Twitter: @tvpollet
-
-&lt;img src="https://media.giphy.com/media/3ohzdRoOp1FUYbtGDu/giphy.gif" width="600px" style="display: block; margin: auto;" /&gt;
-
----
 ## Exercise.
+
+No exercise (yet). Just do some further reading for now!
+
+&lt;img src="https://media.giphy.com/media/NFA61GS9qKZ68/giphy.gif" width="600px" style="display: block; margin: auto;" /&gt;
 
 ---
 ## Any Questions?
@@ -1845,7 +1868,7 @@ eprint: https://doi.org/10.5243/jsswr.2013.24.&lt;/cite&gt;&lt;/p&gt;
 In: &lt;em&gt;The Quantitative Methods for Psychology&lt;/em&gt; 12.3, pp. 154-174.
 ISSN: 2292-1354.&lt;/cite&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;cite&gt;Barendregt, J. J., S. A. Doi, Y. Y. Lee, et al.
+&lt;p&gt;&lt;cite&gt;Barendregt, J. J, S. A. Doi, Y. Y. Lee, et al.
 (2013).
 &amp;ldquo;Meta-Analysis of Prevalence&amp;rdquo;.
 In: &lt;em&gt;Journal of Epidemiology and Community Health&lt;/em&gt; 67.11, pp. 974-978.
@@ -1860,7 +1883,7 @@ ISSN: 0883-4237.&lt;/cite&gt;&lt;/p&gt;
 ---
 ## More refs 1.
 
-&lt;p&gt;&lt;cite&gt;Borenstein, M., L. V. Hedges, J. P. Higgins, et al.
+&lt;p&gt;&lt;cite&gt;Borenstein, M, L. V. Hedges, J. P. Higgins, et al.
 (2009).
 &lt;em&gt;Introduction to Meta-Analysis&lt;/em&gt;.
 John Wiley &amp;amp; Sons.
@@ -1879,7 +1902,7 @@ In: &lt;em&gt;Sociological Methods &amp;amp; Research&lt;/em&gt; 33.2, pp. 261-3
 ISSN: 0049-1241.
 DOI: &lt;a href="https://doi.org/10.1177/0049124104268644"&gt;10.1177/0049124104268644&lt;/a&gt;.&lt;/cite&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;cite&gt;Carter, E. C., F. D. Schönbrodt, W. M. Gervais, et al.
+&lt;p&gt;&lt;cite&gt;Carter, E. C, F. D. Schönbrodt, W. M. Gervais, et al.
 (2019).
 &amp;ldquo;Correcting for Bias in Psychology: A Comparison of Meta-Analytic Methods&amp;rdquo;.
 In: &lt;em&gt;Advances in Methods and Practices in Psychological Science&lt;/em&gt; 2.2, pp. 115-144.
@@ -1914,7 +1937,7 @@ ISBN: 1-119-99343-1.&lt;/cite&gt;&lt;/p&gt;
 Sage publications.
 ISBN: 1-4833-4704-4.&lt;/cite&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;cite&gt;Cooper, H., L. V. Hedges, and J. C. Valentine
+&lt;p&gt;&lt;cite&gt;Cooper, H, L. V. Hedges, and J. C. Valentine
 (2009).
 &lt;em&gt;The Handbook of Research Synthesis and Meta-Analysis&lt;/em&gt;.
 New York: Russell Sage Foundation.
@@ -1981,7 +2004,7 @@ In: &lt;em&gt;Educational researcher&lt;/em&gt; 5.10, pp. 3-8.
 ISSN: 0013-189X.
 DOI: &lt;a href="https://doi.org/10.3102/0013189X005010003"&gt;10.3102/0013189X005010003&lt;/a&gt;.&lt;/cite&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;cite&gt;Goh, J. X., J. A. Hall, and R. Rosenthal
+&lt;p&gt;&lt;cite&gt;Goh, J. X, J. A. Hall, and R. Rosenthal
 (2016).
 &amp;ldquo;Mini Meta-Analysis of Your Own Studies: Some Arguments on Why and a Primer on How&amp;rdquo;.
 In: &lt;em&gt;Social and Personality Psychology Compass&lt;/em&gt; 10.10, pp. 535-549.
@@ -2047,14 +2070,14 @@ DOI: &lt;a href="https://doi.org/10.1037/0033-2909.88.2.359"&gt;10.1037/0033-290
 In: &lt;em&gt;Statistics in Medicine&lt;/em&gt; 21.11, pp. 1539-1558.
 DOI: &lt;a href="https://doi.org/10.1002/sim.1186"&gt;10.1002/sim.1186&lt;/a&gt;.&lt;/cite&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;cite&gt;Higgins, J. P. T., S. G. Thompson, J. J. Deeks, et al.
+&lt;p&gt;&lt;cite&gt;Higgins, J. P. T, S. G. Thompson, J. J. Deeks, et al.
 (2003).
 &amp;ldquo;Measuring Inconsistency in Meta-Analyses&amp;rdquo;.
 In: &lt;em&gt;BMJ&lt;/em&gt; 327.7414, pp. 557-560.
 ISSN: 0959-8138.
 DOI: &lt;a href="https://doi.org/10.1136/bmj.327.7414.557"&gt;10.1136/bmj.327.7414.557&lt;/a&gt;.&lt;/cite&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;cite&gt;Higgins, J., S. Thompson, J. Deeks, et al.
+&lt;p&gt;&lt;cite&gt;Higgins, J, S. Thompson, J. Deeks, et al.
 (2002).
 &amp;ldquo;Statistical Heterogeneity in Systematic Reviews of Clinical Trials: A Critical Appraisal of Guidelines and Practice&amp;rdquo;.
 In: &lt;em&gt;Journal of Health Services Research &amp;amp; Policy&lt;/em&gt; 7.1, pp. 51-61.
@@ -2075,7 +2098,7 @@ ISSN: 1044-3983.&lt;/cite&gt;&lt;/p&gt;
 ---
 ## More refs 7.
 
-&lt;p&gt;&lt;cite&gt;Jackson, D., M. Law, G. Rücker, et al.
+&lt;p&gt;&lt;cite&gt;Jackson, D, M. Law, G. Rücker, et al.
 (2017).
 &amp;ldquo;The Hartung-Knapp Modification for Random-Effects Meta-Analysis: A Useful Refinement but Are There Any Residual Concerns?&amp;rdquo;
 In: &lt;em&gt;Statistics in Medicine&lt;/em&gt; 36.25, pp. 3923-3934.
@@ -2088,7 +2111,7 @@ eprint: https://onlinelibrary.wiley.com/doi/pdf/10.1002/sim.7411.&lt;/cite&gt;&l
 In: &lt;em&gt;Research Synthesis Methods&lt;/em&gt; 8.2, pp. 161-180.
 DOI: &lt;a href="https://doi.org/10.1002/jrsm.1218"&gt;10.1002/jrsm.1218&lt;/a&gt;.&lt;/cite&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;cite&gt;Koricheva, J., J. Gurevitch, and K. Mengersen
+&lt;p&gt;&lt;cite&gt;Koricheva, J, J. Gurevitch, and K. Mengersen
 (2013).
 &lt;em&gt;Handbook of Meta-Analysis in Ecology and Evolution&lt;/em&gt;.
 Princeton, NJ: Princeton University Press.
@@ -2107,20 +2130,20 @@ ISBN: 0-7619-2167-2.&lt;/cite&gt;&lt;/p&gt;
 ---
 ## More refs 8.
 
-&lt;p&gt;&lt;cite&gt;Littell, J. H., J. Corcoran, and V. Pillai
+&lt;p&gt;&lt;cite&gt;Littell, J. H, J. Corcoran, and V. Pillai
 (2008).
 &lt;em&gt;Systematic Reviews and Meta-Analysis&lt;/em&gt;.
 Oxford, UK: Oxford University Press.
 ISBN: 0-19-532654-7.&lt;/cite&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;cite&gt;McShane, B. B., U. Böckenholt, and K. T. Hansen
+&lt;p&gt;&lt;cite&gt;McShane, B. B, U. Böckenholt, and K. T. Hansen
 (2016).
 &amp;ldquo;Adjusting for Publication Bias in Meta-Analysis: An Evaluation of Selection Methods and Some Cautionary Notes&amp;rdquo;.
 In: &lt;em&gt;Perspectives on Psychological Science&lt;/em&gt; 11.5, pp. 730-749.
 DOI: &lt;a href="https://doi.org/10.1177/1745691616662243"&gt;10.1177/1745691616662243&lt;/a&gt;.
 eprint: https://doi.org/10.1177/1745691616662243.&lt;/cite&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;cite&gt;Mengersen, K., C. Schmidt, M. Jennions, et al.
+&lt;p&gt;&lt;cite&gt;Mengersen, K, C. Schmidt, M. Jennions, et al.
 (2013).
 &amp;ldquo;Statistical Models and Approaches to Inference&amp;rdquo;.
 In: 
@@ -2128,7 +2151,7 @@ In:
 Ed. by Koricheva, J, J. Gurevitch and Mengersen, Kerrie.
 Princeton, NJ: Princeton University Press, pp. 89-107.&lt;/cite&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;cite&gt;Methley, A. M., S. Campbell, C. Chew-Graham, et al.
+&lt;p&gt;&lt;cite&gt;Methley, A. M, S. Campbell, C. Chew-Graham, et al.
 (2014).
 &amp;ldquo;PICO, PICOS and SPIDER: A Comparison Study of Specificity and Sensitivity in Three Search Tools for Qualitative Systematic Reviews&amp;rdquo;.
 Eng.
@@ -2136,7 +2159,7 @@ In: &lt;em&gt;BMC health services research&lt;/em&gt; 14, pp. 579-579.
 ISSN: 1472-6963.
 DOI: &lt;a href="https://doi.org/10.1186/s12913-014-0579-0"&gt;10.1186/s12913-014-0579-0&lt;/a&gt;.&lt;/cite&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;cite&gt;Morina, N., K. Stam, T. V. Pollet, et al.
+&lt;p&gt;&lt;cite&gt;Morina, N, K. Stam, T. V. Pollet, et al.
 (2018).
 &amp;ldquo;Prevalence of Depression and Posttraumatic Stress Disorder in Adult Civilian Survivors of War Who Stay in War-Afflicted Regions. A Systematic Review and Meta-Analysis of Epidemiological Studies&amp;rdquo;.
 In: &lt;em&gt;Journal of Affective Disorders&lt;/em&gt; 239, pp. 328-338.
@@ -2146,7 +2169,7 @@ DOI: &lt;a href="https://doi.org/10.1016/j.jad.2018.07.027"&gt;10.1016/j.jad.201
 ---
 ## More refs 9.
 
-&lt;p&gt;&lt;cite&gt;Nakagawa, S., D. W. A. Noble, A. M. Senior, et al.
+&lt;p&gt;&lt;cite&gt;Nakagawa, S, D. W. A. Noble, A. M. Senior, et al.
 (2017).
 &amp;ldquo;Meta-Evaluation of Meta-Analysis: Ten Appraisal Questions for Biologists&amp;rdquo;.
 In: &lt;em&gt;BMC Biology&lt;/em&gt; 15.1, p. 18.
@@ -2173,7 +2196,7 @@ eprint: http://oup.prod.sis.lan/aje/article-pdf/150/5/469/286690/150-5-469.pdf.&
 London, UK: Hutchinson.
 ISBN: 1-134-47002-9.&lt;/cite&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;cite&gt;Roberts, P. D., G. B. Stewart, and A. S. Pullin
+&lt;p&gt;&lt;cite&gt;Roberts, P. D, G. B. Stewart, and A. S. Pullin
 (2006).
 &amp;ldquo;Are Review Articles a Reliable Source of Evidence to Support Conservation and Environmental Management? A Comparison with Medicine&amp;rdquo;.
 In: &lt;em&gt;Biological conservation&lt;/em&gt; 132.4, pp. 409-423.
@@ -2182,31 +2205,31 @@ ISSN: 0006-3207.&lt;/cite&gt;&lt;/p&gt;
 ---
 ## More refs 10.
 
-&lt;p&gt;&lt;cite&gt;Rosenberg, M. S., H. R. Rothstein, and J. Gurevitch
+&lt;p&gt;&lt;cite&gt;Rosenberg, M. S, H. R. Rothstein, and J. Gurevitch
 (2013).
 &amp;ldquo;Effect Sizes: Conventional Choices and Calculations&amp;rdquo;.
 In: &lt;em&gt;Handbook of Meta-analysis in Ecology and Evolution&lt;/em&gt;, pp. 61-71.&lt;/cite&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;cite&gt;Röver, C., G. Knapp, and T. Friede
+&lt;p&gt;&lt;cite&gt;Röver, C, G. Knapp, and T. Friede
 (2015).
 &amp;ldquo;Hartung-Knapp-Sidik-Jonkman Approach and Its Modification for Random-Effects Meta-Analysis with Few Studies&amp;rdquo;.
 In: &lt;em&gt;BMC Medical Research Methodology&lt;/em&gt; 15.1, p. 99.
 ISSN: 1471-2288.
 DOI: &lt;a href="https://doi.org/10.1186/s12874-015-0091-1"&gt;10.1186/s12874-015-0091-1&lt;/a&gt;.&lt;/cite&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;cite&gt;Schwarzer, G., J. R. Carpenter, and G. Rücker
+&lt;p&gt;&lt;cite&gt;Schwarzer, G, J. R. Carpenter, and G. Rücker
 (2015).
 &lt;em&gt;Meta-Analysis with R&lt;/em&gt;.
 New York, NY: Springer.
 ISBN: 3-319-21415-2.&lt;/cite&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;cite&gt;Schwarzer, G., H. Chemaitelly, L. J. Abu-Raddad, et al.
+&lt;p&gt;&lt;cite&gt;Schwarzer, G, H. Chemaitelly, L. J. Abu-Raddad, et al.
 &amp;ldquo;Seriously Misleading Results Using Inverse of Freeman-Tukey Double Arcsine Transformation in Meta-Analysis of Single Proportions&amp;rdquo;.
 In: &lt;em&gt;Research Synthesis Methods&lt;/em&gt; 0.0.
 DOI: &lt;a href="https://doi.org/10.1002/jrsm.1348"&gt;10.1002/jrsm.1348&lt;/a&gt;.
 eprint: https://onlinelibrary.wiley.com/doi/pdf/10.1002/jrsm.1348.&lt;/cite&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;cite&gt;Simmons, J. P., L. D. Nelson, and U. Simonsohn
+&lt;p&gt;&lt;cite&gt;Simmons, J. P, L. D. Nelson, and U. Simonsohn
 (2011).
 &amp;ldquo;False-Positive Psychology&amp;rdquo;.
 In: &lt;em&gt;Psychological Science&lt;/em&gt; 22.11, pp. 1359-1366.
@@ -2216,21 +2239,21 @@ DOI: &lt;a href="https://doi.org/10.1177/0956797611417632"&gt;10.1177/0956797611
 ---
 ## More refs 11.
 
-&lt;p&gt;&lt;cite&gt;Simonsohn, U., L. D. Nelson, and J. P. Simmons
+&lt;p&gt;&lt;cite&gt;Simonsohn, U, L. D. Nelson, and J. P. Simmons
 (2014).
 &amp;ldquo;P-Curve: A Key to the File-Drawer.&amp;rdquo;
 In: &lt;em&gt;Journal of Experimental Psychology: General&lt;/em&gt; 143.2, pp. 534-547.
 ISSN: 1939-2222.
 DOI: &lt;a href="https://doi.org/10.1037/a0033242"&gt;10.1037/a0033242&lt;/a&gt;.&lt;/cite&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;cite&gt;Sterne, J. A. C., A. J. Sutton, J. P. A. Ioannidis, et al.
+&lt;p&gt;&lt;cite&gt;Sterne, J. A. C, A. J. Sutton, J. P. A. Ioannidis, et al.
 (2011).
 &amp;ldquo;Recommendations for Examining and Interpreting Funnel Plot Asymmetry in Meta-Analyses of Randomised Controlled Trials&amp;rdquo;.
 In: &lt;em&gt;BMJ&lt;/em&gt; 343.jul22 1, pp. d4002-d4002.
 ISSN: 0959-8138.
 DOI: &lt;a href="https://doi.org/10.1136/bmj.d4002"&gt;10.1136/bmj.d4002&lt;/a&gt;.&lt;/cite&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;cite&gt;Veroniki, A. A., D. Jackson, W. Viechtbauer, et al.
+&lt;p&gt;&lt;cite&gt;Veroniki, A. A, D. Jackson, W. Viechtbauer, et al.
 (2016).
 &amp;ldquo;Methods to Estimate the Between-Study Variance and Its Uncertainty in Meta-Analysis&amp;rdquo;.
 Eng.
@@ -2259,13 +2282,13 @@ Sebastopol, CA: O'Reilly..&lt;/cite&gt;&lt;/p&gt;
 (2015).
 &lt;em&gt;A Brief Introduction to Meta-Analysis&lt;/em&gt;.&lt;/cite&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;cite&gt;Wiksten, A., G. Rücker, and G. Schwarzer
+&lt;p&gt;&lt;cite&gt;Wiksten, A, G. Rücker, and G. Schwarzer
 (2016).
 &amp;ldquo;Hartung-Knapp Method Is Not Always Conservative Compared with Fixed-Effect Meta-Analysis&amp;rdquo;.
 In: &lt;em&gt;Statistics in Medicine&lt;/em&gt; 35.15, pp. 2503-2515.
 DOI: &lt;a href="https://doi.org/10.1002/sim.6879"&gt;10.1002/sim.6879&lt;/a&gt;.&lt;/cite&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;cite&gt;Wingfield, J. C., R. E. Hegner, A. M. Dufty Jr, et al.
+&lt;p&gt;&lt;cite&gt;Wingfield, J. C, R. E. Hegner, A. M. Dufty Jr, et al.
 (1990).
 &amp;ldquo;The&amp;quot; Challenge Hypothesis&amp;quot;: Theoretical Implications for Patterns of Testosterone Secretion, Mating Systems, and Breeding Strategies&amp;rdquo;.
 In: &lt;em&gt;American Naturalist&lt;/em&gt; 136, pp. 829-846.
