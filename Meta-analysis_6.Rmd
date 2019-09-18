@@ -639,9 +639,9 @@ Great strengths of network meta-analytical models:
 ---
 ## Assumptions
 
-\begin{align}
-\sigma^2_{A,C}^{indirect} = \sigma^2_{B,A}^{direct} + \sigma^2_{B,C}^{direct}
-\end{align}
+
+$$\sigma^2_{A,C}^{indirect} = \sigma^2_{B,A}^{direct} + \sigma^2_{B,C}^{direct}$$
+
 
 In order to calculate the variance of the indirect comparison, we **add up** the variance of the direct comparisons. 
 --> effect size estimated from indirect evidence **always** has greater variance, and thus a lower precision than direct evidence (Dias et al., 2015). 
